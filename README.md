@@ -56,7 +56,7 @@ GROUP BY location, population
 ORDER BY Percent_of_Population_Infected DESC
 
 
-####### Comments: In order to find the Highest Infection rate I aggrigated the functionwhere we can have the MAX total of cases representing the Infection count. To Keep the table organized before a Query, its best to use the GROUP BY on location and population. To find Which location has the Highest Infection rate in comparison to population. DESC is used in the ORDER BY clause to see the the highest percent of population infected within the location.
+###### Comments: In order to find the Highest Infection rate I aggrigated the functionwhere we can have the MAX total of cases representing the Infection count. To Keep the table organized before a Query, its best to use the GROUP BY on location and population. To find Which location has the Highest Infection rate in comparison to population. DESC is used in the ORDER BY clause to see the the highest percent of population infected within the location.
 
 ##### 3B. Which countries has the highest death count?
 
@@ -66,10 +66,8 @@ Where continent is not null AND location is not null
 GROUP BY location
 ORDER BY Total_Death_Count DESC
 
-####### Comment: In the Data set there where some nulls that affected the grouping of
-location and continent. With the WHERE clause its best to have continent and location
-is not null. With all other script its best to have that Where clause to insure data
-integrity on accurate results from functions.
+###### Comment: In the Data set there where some nulls that affected the grouping oflocation and continent. With the WHERE clause its best to have continent and location is not null. With all other script its best to have that Where clause to insure data integrity on accurate results from functions.
+
 
 ###### 3C. Which Continent has the Higheset Death Count?
 
@@ -81,7 +79,9 @@ ORDER BY Total_Death_Count DESC
 
 
 ##### 4.Total Population vs Vaccinations.
+
 ###### What is the Global percent of people who are vaccinated?.
+
 ##### PART 1/2 
 ###### A TEMP TABLE will be created because the system cannot use a column that is just created to have it used in a next column. So when creating a TEMP TABLE a PARTITION is need for location and date. Once SQL reaches a new location we want the system to reset the count. Once our Aggrigated function is applied it will not continuously run where our numbers are ruined. An INSERT INTO funciton will be applied to connnect the TEMPORARY TABLE with two different dataset. JOIN function will be used to execute this query.
 
@@ -113,6 +113,7 @@ ORDER BY continent
 
 ###### This query will result in percentage of people who are vaccinated in different location of the continent.
 ###### A rolling number will apprear in the query that adds its total Global Percentage of people who are vaccinated.
+
 
 ##### Creating View to store Data for later Visualizations
 
