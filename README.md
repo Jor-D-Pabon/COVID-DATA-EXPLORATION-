@@ -10,13 +10,6 @@ FROM `project-000-392922.CDD.covid_data_death`
 #### Since we have our data uploaded we can answer a few questions using the dataset.
 
 
-### REFERENCE QUERY
-
-SELECT location, date, total_cases, new_cases, total_deaths, population
-FROM `project-000-392922.CDD.covid_data_death`
-ORDER BY 1,2
-
-
 
 ##### 1. Total Cases vs Total Deaths
 ###### What is the percent of people who died of Covid in the United States ?
