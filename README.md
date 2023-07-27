@@ -13,7 +13,7 @@ FROM `project-000-392922.CDD.covid_data_death`
 
 
 ### 1. Total Cases vs Total Deaths
-###### What is the percent of people who died of Covid in the United States ?
+#### What is the percent of people who died of Covid in the United States ?
 
 
 SELECT location, date, total_cases, total_deaths, (total_deaths/total_cases) * 100 as
@@ -31,7 +31,7 @@ ORDER BY 1,2 DESC
 
 
 ### 2. Total Cases vs Population
-###### What is the Percent on the poulation of people who got Covid in the United States?
+#### What is the Percent on the poulation of people who got Covid in the United States?
 
 
 SELECT location, date, total_cases, population, (total_cases/population) * 100 as
@@ -97,10 +97,11 @@ ORDER BY Total_Death_Count DESC
 
 ### 4.Total Population vs Vaccinations.
 
-###### What is the Global percent of people who are vaccinated?.
+#### What is the Global percent of people who are vaccinated?.
 
 ### PART 1/2 
 ###### A TEMP TABLE will be created because the system cannot use a column that is just created to have it used in a next column. So when creating a TEMP TABLE a PARTITION is need for location and date. Once SQL reaches a new location we want the system to reset the count. Once our Aggrigated function is applied it will not continuously run where our numbers are ruined. An INSERT INTO funciton will be applied to connnect the TEMPORARY TABLE with two different dataset. JOIN function will be used to execute this query.
+
 
 
 CREATE OR REPLACE TEMP TABLE POPVSVAC
@@ -150,7 +151,7 @@ ORDER BY continent
 ###### A rolling number will apprear in the query that adds its total Global Percentage of people who are vaccinated.
 
 
-##### Creating View to store Data for later Visualizations
+### Creating View to store Data for later Visualizations
 
 
 CREATE VIEW IF NOT EXISTS
