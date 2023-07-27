@@ -8,6 +8,7 @@
 
 
 SELECT *
+
 FROM `project-000-392922.CDD.covid_data_death`
 
 
@@ -36,8 +37,11 @@ ORDER BY 1,2 DESC
 
 SELECT location, date, total_cases, population, (total_cases/population) * 100 as
 Percent_of_Population_with_Covid
+
 FROM `project-000-392922.CDD.covid_data_death`
+
 Where location like '%State%' AND location is not null
+
 ORDER BY 1,2 DESC
 
 
