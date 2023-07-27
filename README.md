@@ -100,7 +100,7 @@ ORDER BY Total_Death_Count DESC
 #### What is the Global percent of people who are vaccinated?.
 
 ### PART 1/2 
-###### A TEMP TABLE will be created because the system cannot use a column that is just created to have it used in a next column. So when creating a TEMP TABLE a PARTITION is need for location and date. Once SQL reaches a new location we want the system to reset the count. Once our Aggrigated function is applied it will not continuously run where our numbers are ruined. An INSERT INTO funciton will be applied to connnect the TEMPORARY TABLE with two different dataset. JOIN function will be used to execute this query.
+#### A TEMP TABLE will be created because the system cannot use a column that is just created to have it used in a next column. So when creating a TEMP TABLE a PARTITION is need for location and date. Once SQL reaches a new location we want the system to reset the count. Once our Aggrigated function is applied it will not continuously run where our numbers are ruined. An INSERT INTO funciton will be applied to connnect the TEMPORARY TABLE with two different dataset. JOIN function will be used to execute this query.
 
 
 
