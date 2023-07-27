@@ -29,7 +29,7 @@ Where location like '%State%' AND location is not null
 ORDER BY 1,2 DESC
 
 
-####### Comment: DESC is placed to see the current death percentage of people who died from Covid.
+###### Comment: DESC is placed to see the current death percentage of people who died from Covid.
 
 
 
