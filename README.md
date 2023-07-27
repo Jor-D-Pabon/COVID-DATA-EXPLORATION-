@@ -39,7 +39,7 @@ Percent_of_Population_with_Covid
 
 FROM `project-000-392922.CDD.covid_data_death`
 
-Where location like '%State%' AND location is not null
+WHERE location like '%State%' AND location is not null
 
 ORDER BY 1,2 DESC
 
@@ -54,7 +54,7 @@ MAX(total_cases)/(population) * 100 as Percent_of_Population_Infected
 
 FROM `project-000-392922.CDD.covid_data_death`
 
-Where location is not null
+WHERE location is not null
 
 GROUP BY location, population
 
@@ -158,7 +158,7 @@ CREATE VIEW IF NOT EXISTS
 
 `project-000-392922._scriptcd5139e2214133ebf0955165d99a9611ef042ecb.POPVSVAC`
 
-As
+AS
 
 SELECT A.continent, A.location, A.date, A.population, B.new_vaccinations,
 Sum(B.new_vaccinations) OVER (PARTITION BY A.location ORDER BY A.location,A.date) as
