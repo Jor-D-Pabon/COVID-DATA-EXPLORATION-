@@ -1,13 +1,14 @@
 # COVID-DATA-EXPLORATION-
 
-##### This is a data set that was downloaded by https://ourworldindata.org/covid-cases & https://ourworldindata.org/covid-deaths. 
-##### BigQuery SQL will be used for the following exploration of this project. Data Exploration will begin with this query to see if the dataset is uploaded.
+##### This is a data set that was downloaded by https://ourworldindata.org/covid-cases & https://ourworldindata.org/covid-deaths. BigQuery SQL, will be used for the following exploration of this project. Data Exploration will begin with this query to see if the dataset is uploaded.
+
 
 SELECT *
 FROM `project-000-392922.CDD.covid_data_death`
 
 
 #### Since we have our data uploaded we can answer a few questions using the dataset.
+
 
 ### REFERENCE QUERY
 
@@ -20,17 +21,21 @@ ORDER BY 1,2
 ##### 1. Total Cases vs Total Deaths
 ###### What is the percent of people who died of Covid in the United States ?
 
+
 SELECT location, date, total_cases, total_deaths, (total_deaths/total_cases) * 100 as
 Death_Percentage
 FROM `project-000-392922.CDD.covid_data_death`
 Where location like '%State%' AND location is not null
 ORDER BY 1,2 DESC
 
-##### Comment: DESC is placed to see the current death percentage of people who died from Covid.
+
+####### Comment: DESC is placed to see the current death percentage of people who died from Covid.
+
 
 
 ##### 2. Total Cases vs Population
 ###### What is the Percent on the poulation of people who got Covid in the United States?
+
 
 SELECT location, date, total_cases, population, (total_cases/population) * 100 as
 Percent_of_Population_with_Covid
@@ -38,8 +43,10 @@ FROM `project-000-392922.CDD.covid_data_death`
 Where location like '%State%' AND location is not null
 ORDER BY 1,2 DESC
 
+
 ##### 3. Countries Infection/Death Rate
 ###### 3A. Which Country has the Highest Infection rate in comparrison to population ?.
+
 
 SELECT location, population, MAX(total_cases) AS Highest_Infection_Count,
 MAX(total_cases)/(population) * 100 as Percent_of_Population_Infected
@@ -48,12 +55,8 @@ Where location is not null
 GROUP BY location, population
 ORDER BY Percent_of_Population_Infected DESC
 
-###### Comments: In order to find the Highest Infection rate I aggrigated the function
-where we can have the MAX total of cases representing the Infection count. To Keep the
-Table organized before a Query, its best to use the GROUP BY on location and
-population. To find Which location has the Highest Infection rate in comparison to
-population. DESC is used in the ORDER BY clause to see the the highest percent of
-population infected within the location.
+
+####### Comments: In order to find the Highest Infection rate I aggrigated the functionwhere we can have the MAX total of cases representing the Infection count. To Keep the table organized before a Query, its best to use the GROUP BY on location and population. To find Which location has the Highest Infection rate in comparison to population. DESC is used in the ORDER BY clause to see the the highest percent of population infected within the location.
 
 ##### 3B. Which countries has the highest death count?
 
@@ -63,7 +66,7 @@ Where continent is not null AND location is not null
 GROUP BY location
 ORDER BY Total_Death_Count DESC
 
-###### Comment: In the Data set there where some nulls that affected the grouping of
+####### Comment: In the Data set there where some nulls that affected the grouping of
 location and continent. With the WHERE clause its best to have continent and location
 is not null. With all other script its best to have that Where clause to insure data
 integrity on accurate results from functions.
