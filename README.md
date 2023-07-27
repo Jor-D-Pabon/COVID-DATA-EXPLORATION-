@@ -1,4 +1,8 @@
-# COVID-DATA-EXPLORATION-
+# COVID-DATA-EXPLORATION
+
+
+
+
 
 ##### This is a data set that was downloaded by https://ourworldindata.org/covid-cases & https://ourworldindata.org/covid-deaths. BigQuery SQL, will be used for the following exploration of this project. Data Exploration will begin with this query to see if the dataset is uploaded.
 
@@ -42,10 +46,15 @@ ORDER BY 1,2 DESC
 
 
 SELECT location, population, MAX(total_cases) AS Highest_Infection_Count,
+
 MAX(total_cases)/(population) * 100 as Percent_of_Population_Infected
+
 FROM `project-000-392922.CDD.covid_data_death`
+
 Where location is not null
+
 GROUP BY location, population
+
 ORDER BY Percent_of_Population_Infected DESC
 
 
@@ -56,9 +65,13 @@ ORDER BY Percent_of_Population_Infected DESC
 
 
 SELECT location, MAX(total_deaths) AS Total_Death_Count
+
 FROM `project-000-392922.CDD.covid_data_death`
+
 Where continent is not null AND location is not null
+
 GROUP BY location
+
 ORDER BY Total_Death_Count DESC
 
 
@@ -69,9 +82,13 @@ ORDER BY Total_Death_Count DESC
 
 
 SELECT continent, MAX(total_deaths) AS Total_Death_Count
+
 FROM `project-000-392922.CDD.covid_data_death`
-Where continent is not null AND location is not null
+
+WHERE continent is not null AND location is not null
+
 GROUP BY continent
+
 ORDER BY Total_Death_Count DESC
 
 
@@ -84,29 +101,45 @@ ORDER BY Total_Death_Count DESC
 
 
 CREATE OR REPLACE TEMP TABLE POPVSVAC
+
 (
+
 continent string,
+
 location string,
+
 date datetime,
+
 population FLOAT64,
+
 new_vaccinations FLOAT64,
+
 People_Vaccinated FLOAT64);
+
 INSERT INTO POPVSVAC
+
 SELECT A.continent, A.location, A.date, A.population, B.new_vaccinations,
 Sum(B.new_vaccinations) OVER (PARTITION BY A.location ORDER BY A.location,A.date) as
 People_Vaccinated
+
 FROM `project-000-392922.CDD.covid_data_cases` B
+
 JOIN `project-000-392922.CDD.covid_data_death` A
-on B.location=A.location AND B.date = A.date
-where A.continent is not null
+
+ON B.location=A.location AND B.date = A.date
+
+WHERE A.continent is not null
 
 
 ##### PART 2/2 After creating a TEMP TABLE we can now find the percent of population whoare vaccinated.
 
 
 SELECT *, (People_Vaccinated)/(population)*100 AS Global_Percent
+
 FROM `project-000-392922._scriptcd5139e2214133ebf0955165d99a9611ef042ecb.POPVSVAC`
-Where continent is not null AND location is not null
+
+WHERE continent is not null AND location is not null
+
 ORDER BY continent
 
 
@@ -118,11 +151,19 @@ ORDER BY continent
 
 
 CREATE VIEW IF NOT EXISTS
-`project-000-392922._scriptcd5139e2214133ebf0955165d99a9611ef042ecb.POPVSVAC` As
+
+`project-000-392922._scriptcd5139e2214133ebf0955165d99a9611ef042ecb.POPVSVAC`
+
+As
+
 SELECT A.continent, A.location, A.date, A.population, B.new_vaccinations,
 Sum(B.new_vaccinations) OVER (PARTITION BY A.location ORDER BY A.location,A.date) as
 People_Vaccinated
+
 FROM `project-000-392922.CDD.covid_data_cases` B
+
 JOIN `project-000-392922.CDD.covid_data_death` A
-on B.location=A.location AND B.date = A.date
-where A.continent is not null
+
+ON B.location=A.location AND B.date = A.date
+
+WHERE A.continent is not null
