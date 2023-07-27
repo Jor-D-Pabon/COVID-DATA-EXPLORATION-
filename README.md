@@ -1,9 +1,5 @@
 # COVID-DATA-EXPLORATION
 
-
-
-
-
 ##### This is a data set that was downloaded by https://ourworldindata.org/covid-cases & https://ourworldindata.org/covid-deaths. BigQuery SQL, will be used for the following exploration of this project. Data Exploration will begin with this query to see if the dataset is uploaded.
 
 
@@ -22,8 +18,11 @@ FROM `project-000-392922.CDD.covid_data_death`
 
 SELECT location, date, total_cases, total_deaths, (total_deaths/total_cases) * 100 as
 Death_Percentage
+
 FROM `project-000-392922.CDD.covid_data_death`
+
 Where location like '%State%' AND location is not null
+
 ORDER BY 1,2 DESC
 
 
